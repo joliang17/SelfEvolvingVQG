@@ -922,3 +922,141 @@ a:focus {
     content: "\2193"; left: 50%; top: -0.6rem; transform: translateX(-50%);
   }
 }
+<style>
+/* ── Evaluation Framework styles ── */
+.eval-pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 2rem 0 1.5rem;
+  flex-wrap: wrap;
+}
+ 
+.eval-stage {
+  flex: 1;
+  min-width: 140px;
+  background: #f8faff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 0;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  position: relative;
+  transition: background 0.2s;
+}
+ 
+.eval-stage:first-child { border-radius: 10px 0 0 10px; }
+.eval-stage:last-child  { border-radius: 0 10px 10px 0; }
+ 
+.eval-stage + .eval-stage::before {
+  content: "→";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #94a3b8;
+  z-index: 1;
+  background: white;
+  padding: 0 2px;
+}
+ 
+.eval-stage-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+ 
+.eval-stage-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.3rem;
+}
+ 
+.eval-stage-desc {
+  font-size: 0.82rem;
+  color: #374151;
+  line-height: 1.4;
+}
+ 
+/* Five dimension cards */
+.eval-dims {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+ 
+.eval-dim {
+  border-radius: 10px;
+  padding: 1.1rem 1rem;
+  background: white;
+  border: 1.5px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.eval-dim::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 10px 10px 0 0;
+}
+ 
+.eval-dim.d-perc::before  { background: #3b82f6; }
+.eval-dim.d-spat::before  { background: #8b5cf6; }
+.eval-dim.d-ctx::before   { background: #f59e0b; }
+.eval-dim.d-diff::before  { background: #ef4444; }
+.eval-dim.d-div::before   { background: #10b981; }
+ 
+.eval-dim-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 0.3rem;
+  color: #1e293b;
+}
+ 
+.eval-dim-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-bottom: 0.5rem;
+}
+ 
+.d-perc .eval-dim-tag  { background: #dbeafe; color: #1d4ed8; }
+.d-spat .eval-dim-tag  { background: #ede9fe; color: #6d28d9; }
+.d-ctx .eval-dim-tag   { background: #fef3c7; color: #b45309; }
+.d-diff .eval-dim-tag  { background: #fee2e2; color: #b91c1c; }
+.d-div .eval-dim-tag   { background: #d1fae5; color: #065f46; }
+ 
+.eval-dim-desc {
+  font-size: 0.8rem;
+  color: #4b5563;
+  line-height: 1.45;
+}
+ 
+.eval-agentic-note {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-top: 1.2rem;
+  font-size: 0.88rem;
+  color: #1e3a5f;
+  line-height: 1.6;
+}
+ 
+.eval-agentic-note strong { color: #1d4ed8; }
+ 
+@media (max-width: 640px) {
+  .eval-pipeline { flex-direction: column; }
+  .eval-stage { border-radius: 8px !important; }
+  .eval-stage + .eval-stage::before { content: "↓"; left: 50%; top: -14px; transform: translateX(-50%); }
+}
