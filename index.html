@@ -374,34 +374,8 @@
           </p>
      
           <!-- Agentic pipeline -->
-          <h3 class="title is-5" style="margin-top:1.5rem; margin-bottom:0.8rem;">Agentic Evaluation Pipeline</h3>
-          <div class="eval-pipeline">
-            <div class="eval-stage">
-              <span class="eval-stage-icon">🖼️</span>
-              <div class="eval-stage-label">Input</div>
-              <div class="eval-stage-desc">Image + generated question</div>
-            </div>
-            <div class="eval-stage">
-              <span class="eval-stage-icon">🤖</span>
-              <div class="eval-stage-label">VLM Judge</div>
-              <div class="eval-stage-desc">Attempts to answer the question given the image</div>
-            </div>
-            <div class="eval-stage">
-              <span class="eval-stage-icon">🔍</span>
-              <div class="eval-stage-label">Score</div>
-              <div class="eval-stage-desc">Rates the question on 5 dimensions (0–1 each)</div>
-            </div>
-            <div class="eval-stage">
-              <span class="eval-stage-icon">📊</span>
-              <div class="eval-stage-label">Aggregate</div>
-              <div class="eval-stage-desc">QG Average across all dimensions and images</div>
-            </div>
-          </div>
      
           <!-- Why agentic -->
-          <div class="eval-agentic-note">
-            <strong>Why agentic?</strong> By having the judge <em>attempt</em> to answer each question before scoring it, the protocol grounds evaluation in actual visual reasoning rather than surface-level heuristics. A question that sounds visually grounded but can be answered from world knowledge alone will be penalized — the judge&rsquo;s attempt reveals whether the image is truly necessary.
-          </div>
      
           <!-- Five dimensions -->
           <h3 class="title is-5" style="margin-top:2rem; margin-bottom:0.8rem;">Five Quality Dimensions</h3>
