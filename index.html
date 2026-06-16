@@ -349,6 +349,109 @@
       </div>
     </section>
 
+    <!-- ============ EVALUATION FRAMEWORK ============ -->
+    <section class="section hero is-light" id="evaluation">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Evaluation Framework</h2>
+            <p class="subtitle is-5 has-text-grey">
+              How do you measure whether a generated question is actually <em>good</em>?
+              We introduce an agentic protocol that goes beyond surface fluency.
+            </p>
+          </div>
+        </div>
+     
+        <div class="content">
+     
+          <!-- Challenge framing -->
+          <p>
+            Evaluating question quality is fundamentally harder than evaluating answers:
+            there is no single ground-truth question for a given image, and naive metrics
+            (BLEU, CIDEr) reward lexical overlap rather than visual grounding or cognitive
+            demand. We design an <strong>agentic evaluation protocol</strong> that uses a
+            VLM judge to probe each generated question across five interpretable dimensions.
+          </p>
+     
+          <!-- Agentic pipeline -->
+          <h3 class="title is-5" style="margin-top:1.5rem; margin-bottom:0.8rem;">Agentic Evaluation Pipeline</h3>
+          <div class="eval-pipeline">
+            <div class="eval-stage">
+              <span class="eval-stage-icon">🖼️</span>
+              <div class="eval-stage-label">Input</div>
+              <div class="eval-stage-desc">Image + generated question</div>
+            </div>
+            <div class="eval-stage">
+              <span class="eval-stage-icon">🤖</span>
+              <div class="eval-stage-label">VLM Judge</div>
+              <div class="eval-stage-desc">Attempts to answer the question given the image</div>
+            </div>
+            <div class="eval-stage">
+              <span class="eval-stage-icon">🔍</span>
+              <div class="eval-stage-label">Score</div>
+              <div class="eval-stage-desc">Rates the question on 5 dimensions (0–1 each)</div>
+            </div>
+            <div class="eval-stage">
+              <span class="eval-stage-icon">📊</span>
+              <div class="eval-stage-label">Aggregate</div>
+              <div class="eval-stage-desc">QG Average across all dimensions and images</div>
+            </div>
+          </div>
+     
+          <!-- Why agentic -->
+          <div class="eval-agentic-note">
+            <strong>Why agentic?</strong> By having the judge <em>attempt</em> to answer each question before scoring it, the protocol grounds evaluation in actual visual reasoning rather than surface-level heuristics. A question that sounds visually grounded but can be answered from world knowledge alone will be penalized — the judge&rsquo;s attempt reveals whether the image is truly necessary.
+          </div>
+     
+          <!-- Five dimensions -->
+          <h3 class="title is-5" style="margin-top:2rem; margin-bottom:0.8rem;">Five Quality Dimensions</h3>
+          <div class="eval-dims">
+     
+            <div class="eval-dim d-perc">
+              <div class="eval-dim-tag">Search</div>
+              <div class="eval-dim-name">Visual Search Difficulty</div>
+              <div class="eval-dim-desc">Does the question require actively searching the image for the relevant region or detail, rather than answering from a salient object?</div>
+            </div>
+     
+            <div class="eval-dim d-spat">
+              <div class="eval-dim-tag">Coverage</div>
+              <div class="eval-dim-name">Visual Evidence Coverage</div>
+              <div class="eval-dim-desc">Does answering the question require attending to a broad portion of the image, rather than a single local patch?</div>
+            </div>
+     
+            <div class="eval-dim d-ctx">
+              <div class="eval-dim-tag">Context</div>
+              <div class="eval-dim-name">Visual Context Reasoning</div>
+              <div class="eval-dim-desc">Does the question require integrating multiple visual cues or scene-level context rather than reading off a single isolated detail?</div>
+            </div>
+     
+            <div class="eval-dim d-diff">
+              <div class="eval-dim-tag">Spatial</div>
+              <div class="eval-dim-name">Visual Spatial Reasoning</div>
+              <div class="eval-dim-desc">Does the question probe spatial relations — layout, depth, size comparison, or positional reference across image regions?</div>
+            </div>
+     
+            <div class="eval-dim d-div">
+              <div class="eval-dim-tag">Diversity</div>
+              <div class="eval-dim-name">Questioning Diversity</div>
+              <div class="eval-dim-desc">Across a set of questions for the same image, do they cover distinct visual aspects rather than rephrasing the same idea?</div>
+            </div>
+     
+          </div>
+     
+          <!-- Scoring note -->
+          <p style="margin-top:1rem;">
+            Each dimension is scored on a 0–1 scale by the VLM judge, and the
+            <strong>QG Average</strong> is the mean across all five. This multi-dimensional
+            score is more informative than a single scalar: a model can improve spatial
+            reasoning while still lacking contextual diversity, and the breakdown pinpoints
+            exactly where gains are concentrated.
+          </p>
+     
+        </div>
+      </div>
+    </section>
+
     <!-- ============ SECTION 1: Main Results ============ -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
